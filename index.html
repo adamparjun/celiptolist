@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>X Reply List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 8px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+            padding: 12px;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .total-count {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8em;
+        }
+
+        .search-box {
+            margin-bottom: 12px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-reset {
+            padding: 12px 16px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 0.85em;
+        }
+
+        .btn-reset:active {
+            transform: scale(0.95);
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .user-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-handle {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 2px;
+            word-break: break-word;
+        }
+
+        .user-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.75em;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8em;
+            white-space: nowrap;
+            min-width: 55px;
+        }
+
+        .btn-visit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-visit:active {
+            opacity: 0.8;
+            transform: scale(0.95);
+        }
+
+        .btn-copy {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-copy:active {
+            background: #e0e0e0;
+            transform: scale(0.95);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: white;
+            padding: 25px;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 0.8em;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>𝕏 Reply List</h1>
+            <p>Daftar Private Anda</p>
+            <div class="total-count">
+                Total: <strong id="totalCount">0</strong>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="Cari username..."
+            >
+            <button class="btn-reset" onclick="resetSearch()">Reset</button>
+        </div>
+
+        <div class="list-container" id="listContainer">
+            <!-- User items akan di-generate di sini -->
+        </div>
+
+        <div class="footer">
+            <p>Private • Made with ❤️</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Data pengguna
+        const users = [
+            { handle: 'standotsui' },
+            { handle: '0xdefimaster' },
+            { handle: 'cryptoholic2200' },
+            { handle: 'Gyokeres_eth' },
+            { handle: 'snorpyXBT' },
+            { handle: 'ramadityapu' },
+            { handle: 'Majidoank31' },
+            { handle: 'suhuweb3' },
+            { handle: 'azwardiiqbal' },
+            { handle: '0xIsa0' },
+            { handle: 'Kaawairashii' },
+            { handle: 'ChenGuanXi7766' },
+            { handle: 'Bigchase_ADN' },
+            { handle: 'CreateWithTony' },
+            { handle: 'Noora_Web3' },
+            { handle: 'devnull_jack' },
+            { handle: 'Jepe999' },
+            { handle: 'AEP0612' },
+            { handle: 'Mint8777' },
+            { handle: 'Utpalrabhaaa' },
+            { handle: 'alfathjiee' },
+            { handle: 'worldkai123' },
+            { handle: '_beyondmydreams' },
+            { handle: 'AgilTriatm64429' },
+            { handle: 'Nuilever01' },
+            { handle: 'no_8_eight' },
+            { handle: 'psypth' },
+            { handle: 'yantowid1' },
+            { handle: 'rcyxie11' },
+            { handle: '0xbaropintar' },
+            { handle: 'Jude_Malak' },
+            { handle: 'lisbongg' },
+            { handle: 'Meeehunter' },
+            { handle: 'ammuchammu02' },
+            { handle: 'Glitchnfa' },
+            { handle: '1000xSolid' },
+            { handle: '0xWuki' },
+            { handle: 'SimonDezX' },
+            { handle: 'Cryptosaga001' },
+            { handle: 'Oxdave' },
+            { handle: '0xHamadav' },
+            { handle: 'gojocallsOG' },
+            { handle: 'realSam0x' },
+            { handle: 'thescreenwire' },
+            { handle: 'Web3__Youth' },
+            { handle: 'defi_emmy' },
+            { handle: 'JJXMeta' },
+            { handle: 'ApeKideth' },
+            { handle: '_0xrekt' },
+            { handle: 'OrcaWynn' },
+            { handle: 'dreyart01' },
+            { handle: '0xteyra' },
+            { handle: 'NiklasCryptoX' },
+            { handle: 'xCryptoAlucard' },
+            { handle: 'gordey_4ik' },
+            { handle: 'W15Sy' },
+            { handle: '0xraguna' },
+            { handle: 'anti_drain' },
+            { handle: 'azzurahai' },
+            { handle: 'd33genist' },
+            { handle: 'uksuyy' },
+            { handle: '0xsaragi' },
+            { handle: 'HoSieMun' },
+            { handle: 'raqxuel25' },
+            { handle: 'muhmmdjohan' },
+            { handle: 'xxxxxxxxxxx456' },
+            { handle: 'naumanisrar02' },
+            { handle: 'PlayerU60478299' },
+            { handle: 'k1zora' },
+            { handle: 'Bishopu15' },
+            { handle: 'Fasyayaya14' },
+            { handle: 'Delf002' },
+            { handle: 'iamtofunmi01' },
+            { handle: 'marcuslayerx' },
+            { handle: 'qord_zn' },
+            { handle: 'world_invade' },
+            { handle: 'Autosultan_team' },
+            { handle: 'Jeneveive_23' },
+            { handle: 'Oxchop_pa' },
+            { handle: 'sepram_Z' },
+            { handle: '0x3vm' },
+            { handle: 'kormoeth' },
+            { handle: 'AndoriginalDao' },
+            { handle: 'MdSeyam2883738' },
+            { handle: '0xNodachi' },
+            { handle: 'RABI10090' },
+            { handle: 'hisokai2002' },
+            { handle: '0xAadill' },
+            { handle: '0xGloryFi' },
+            { handle: 'Kirahell69' },
+            { handle: 'u40_bnb' },
+            { handle: 'Danko_ho' },
+            { handle: 'gainers_top' },
+            { handle: 'MdrazuhG' },
+            { handle: '0xRavaillac' },
+            { handle: 'BigPaulTm' },
+            { handle: '0xchannn' },
+            { handle: 'Hickslve12zj' },
+            { handle: 'Davidgmi' },
+            { handle: 'akiii345' },
+            { handle: 'ajrmdhn___' },
+            { handle: 'fitri_besare' },
+            { handle: 'sweet_tobelly' },
+            { handle: 'mochiddj' },
+            { handle: '0xLittlejoey' },
+            { handle: 'ainikolaNFT' },
+            { handle: 'qrx9t' },
+            { handle: 'ghezel8888' },
+            { handle: 'BakoBalie' },
+            { handle: 'Mandero128992' },
+            { handle: 'SuafSuaf498807' },
+            { handle: 'rizkisanker' },
+            { handle: 'Mr_Kalamkaar' },
+            { handle: '0x_vant' },
+            { handle: 'brood_meme' },
+            { handle: 'CesarNovia64388' },
+            { handle: 'tienlui8386' },
+            { handle: '0xRaiNgz' },
+            { handle: 'kodd25' },
+            { handle: 'Abu__foysal' },
+            { handle: 'EnzoEris' },
+            { handle: 'asha_eth' },
+            { handle: 'alter0099' },
+            { handle: 'DarkoMatrix' },
+            { handle: 'Rehz_cr7' },
+            { handle: 'patryx' },
+            { handle: 'DebshSukil' },
+            { handle: 'Keymonuta' },
+            { handle: 'tedsrekt' },
+            { handle: 'JossyBlaak' },
+            { handle: 'dri_poo' },
+            { handle: 'ShillerN00b' },
+            { handle: 'baobabmango' },
+            { handle: 'Zeksintra' },
+            { handle: 'i7SEVENNN' },
+            { handle: 'Limitado666' },
+            { handle: 'tsukiyakko' },
+            { handle: 'Kudabajingan' },
+            { handle: '0xdoha' },
+            { handle: 'Cqy4ZDH3k8aF3Lv' },
+            { handle: 'GNftarmy' },
+            { handle: 'LitetheX' },
+            { handle: 'dmitrysssss' },
+            { handle: 'shanans_' },
+            { handle: '2rapspoint_' },
+            { handle: 'Ahmedhaq01' },
+            { handle: 'Tuyendevt' },
+            { handle: 'xyzn077' },
+            { handle: 'TinggiFitamin' },
+            { handle: 'Hasdaaja_' },
+            { handle: 'avarinjung' },
+            { handle: 'gembuloney' },
+            { handle: 'MosolovAle98427' },
+            { handle: 'Nesca677' },
+            { handle: 'CoortezzEth' },
+            { handle: 'FaruuQ_1' },
+            { handle: 'bmaplmj' },
+            { handle: 'Kai_Nimo02' },
+            { handle: 'MarcoSimonetti8' },
+            { handle: 'onchainNika' },
+            { handle: 'coinhunter_X' },
+            { handle: 'OPULENTBRR' },
+            { handle: 'truonggiangle99' },
+            { handle: 'softlink_web3' }
+        ];
+
+        let filteredUsers = [...users];
+
+        function renderUsers(usersToRender) {
+            const container = document.getElementById('listContainer');
+            
+            if (usersToRender.length === 0) {
+                container.innerHTML = '<div class="empty-state">Tidak ada hasil yang cocok</div>';
+                document.getElementById('totalCount').textContent = '0';
+                return;
+            }
+
+            container.innerHTML = usersToRender.map((user, index) => `
+                <div class="user-item">
+                    <div class="number">${index + 1}</div>
+                    <div class="user-info">
+                        <div class="user-handle">@${user.handle}</div>
+                        <a href="https://x.com/${user.handle}" target="_blank" class="user-link">x.com/${user.handle}</a>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit">Buka</a>
+                        <button class="btn btn-copy" onclick="copyToClipboard('@${user.handle}')">Salin</button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('totalCount').textContent = usersToRender.length;
+        }
+
+        function searchUsers(query) {
+            const lowerQuery = query.toLowerCase();
+            filteredUsers = users.filter(user => 
+                user.handle.toLowerCase().includes(lowerQuery)
+            );
+            renderUsers(filteredUsers);
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            filteredUsers = [...users];
+            renderUsers(filteredUsers);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('✓ Disalin!');
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 1500);
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            searchUsers(e.target.value);
+        });
+
+        // Initial render
+        renderUsers(users);
+    </script>
+</body>
+</html>
