@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>X Reply List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 8px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+            padding: 12px;
+        }
+
+        .header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .total-count {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8em;
+        }
+
+        .search-box {
+            margin-bottom: 12px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-reset {
+            padding: 12px 16px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 0.85em;
+        }
+
+        .btn-reset:active {
+            transform: scale(0.95);
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .user-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        .user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-handle {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 2px;
+            word-break: break-word;
+        }
+
+        .user-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.75em;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8em;
+            white-space: nowrap;
+            min-width: 55px;
+        }
+
+        .btn-visit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-visit:active {
+            opacity: 0.8;
+            transform: scale(0.95);
+        }
+
+        .btn-copy {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-copy:active {
+            background: #e0e0e0;
+            transform: scale(0.95);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: white;
+            padding: 25px;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 0.8em;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>top100 kaito CT</h1>
+            <div class="total-count">
+                Total: <strong id="totalCount">0</strong>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="Cari username..."
+            >
+            <button class="btn-reset" onclick="resetSearch()">Reset</button>
+        </div>
+
+        <div class="list-container" id="listContainer">
+            <!-- User items akan di-generate di sini -->
+        </div>
+
+        <div class="footer">
+            <p>Private • Made with ❤️</p>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Data pengguna
+        const users = [
+            { handle: 'jessepollak' },
+            { handle: 'shayne_coplan' },
+            { handle: 'what3verman' },
+            { handle: 'nftmufettisi' },
+            { handle: 'Cryptking_1' },
+            { handle: 'davidtsocy' },
+            { handle: '0xDith' },
+            { handle: 'MadVincent666' },
+            { handle: 'TimHaldorsson' },
+            { handle: 'waleswoosh' },
+            { handle: 'Cyber_Warriorr' },
+            { handle: 'j0hnwang' },
+            { handle: 'ProofOfTravis' },
+            { handle: 'RiddlerNFT' },
+            { handle: 'Montiweb3' },
+            { handle: 'leaf_swan' },
+            { handle: 'raidenkrn' },
+            { handle: 'KierianV' },
+            { handle: 'ilodiwow' },
+            { handle: 'OVGNFT' },
+            { handle: 'SteveKBark' },
+            { handle: 'xerocooleth' },
+            { handle: 'amit0xic' },
+            { handle: 'CryptoUsopp' },
+            { handle: 'walsxbt' },
+            { handle: 'colu_farmer' },
+            { handle: '0xALTF4' },
+            { handle: 'BagCalls' },
+            { handle: 'HollanderAdam' },
+            { handle: 'munchPRMR' },
+            { handle: 'ripchillpill' },
+            { handle: 'sjdedic' },
+            { handle: 'AirdropKor_eth' },
+            { handle: '1CrypticPoet' },
+            { handle: 'KeyboardMonkey3' },
+            { handle: 'icobeast' },
+            { handle: 'Rosaaa' },
+            { handle: 'Jampzey' },
+            { handle: 'nics_off' },
+            { handle: 'Maxi_cho' },
+            { handle: 'NessaC_w3' },
+            { handle: 'farokh' },
+            { handle: 'FerreWeb3' },
+            { handle: 'katexbt' },
+            { handle: 'RealmissNFT' },
+            { handle: 'eeelistar' },
+            { handle: 'sikiri0' },
+            { handle: 'naruto11eth' },
+            { handle: 'divine_economy' },
+            { handle: 'travisbickle0x' },
+            { handle: 'pukerrainbrow' },
+            { handle: 'enzo_gte' },
+            { handle: 'VaveylaCrypto' },
+            { handle: '0xCygaar' },
+            { handle: '0xxbeacon' },
+            { handle: 'chooserich' },
+            { handle: '0xTulipKing' },
+            { handle: '0xbigm7' },
+            { handle: '0xdogacan' },
+            { handle: 'clairekart' },
+            { handle: 'AvalancheXBT' },
+            { handle: 'BuTongRen6' },
+            { handle: 'zaimiri' },
+            { handle: 'BitmanTW' },
+            { handle: 'seongmoolee' },
+            { handle: 'Alaouicapital' },
+            { handle: '__Talley__' },
+            { handle: 'erequendi' },
+            { handle: 'holly_web3' },
+            { handle: 'Tuteth_' },
+            { handle: 'johnking_eth' },
+            { handle: 'Gyokeres_eth' },
+            { handle: 'spencer' },
+            { handle: 'NftPerks' },
+            { handle: 'mansourtarek_' },
+            { handle: 'andyyy' },
+            { handle: 'YusufGemz' },
+            { handle: 'rektmando' },
+            { handle: '0xNairolf' },
+            { handle: 'luanalopeslara' },
+            { handle: 'mikashi' },
+            { handle: 'wyckoffweb' },
+            { handle: 'beijingdou' },
+            { handle: 'kaiynne' },
+            { handle: 'ASvanevik' },
+            { handle: '0xifreqs' },
+            { handle: 'BeiDao_98' },
+            { handle: 'Web3Niels' },
+            { handle: 'bartender_loopy' },
+            { handle: 'Tyler_Did_It' },
+            { handle: 'ProofOfEly' },
+            { handle: 'xingxingjun8888' },
+            { handle: 'Crypto_Zh0u' },
+            { handle: 'grebbycrypto' },
+            { handle: 'Baili1018' },
+            { handle: 'Theo_jpeg' },
+            { handle: 'srinigoes' },
+            { handle: 'r_rainss' },
+            { handle: 'StarPlatinum_' }
+        ];
+
+        let filteredUsers = [...users];
+
+        function renderUsers(usersToRender) {
+            const container = document.getElementById('listContainer');
+            
+            if (usersToRender.length === 0) {
+                container.innerHTML = '<div class="empty-state">Tidak ada hasil yang cocok</div>';
+                document.getElementById('totalCount').textContent = '0';
+                return;
+            }
+
+            container.innerHTML = usersToRender.map((user, index) => `
+                <div class="user-item">
+                    <div class="number">${index + 1}</div>
+                    <div class="user-info">
+                        <div class="user-handle">@${user.handle}</div>
+                        <a href="https://x.com/${user.handle}" target="_blank" class="user-link">x.com/${user.handle}</a>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit">Buka</a>
+                        <button class="btn btn-copy" onclick="copyToClipboard('@${user.handle}')">Salin</button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('totalCount').textContent = usersToRender.length;
+        }
+
+        function searchUsers(query) {
+            const lowerQuery = query.toLowerCase();
+            filteredUsers = users.filter(user => 
+                user.handle.toLowerCase().includes(lowerQuery)
+            );
+            renderUsers(filteredUsers);
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            filteredUsers = [...users];
+            renderUsers(filteredUsers);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('✓ Disalin!');
+            });
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 1500);
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            searchUsers(e.target.value);
+        });
+
+        // Initial render
+        renderUsers(users);
+    </script>
+</body>
+</html>
