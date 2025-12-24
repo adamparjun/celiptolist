@@ -265,6 +265,8 @@
             <div class="tab-navigation">
                 <button class="tab-btn active" onclick="switchTab('tab1')">list gb celipto friend</button>
                 <button class="tab-btn" onclick="switchTab('tab2')">top100 kaito CT</button>
+                <button class="tab-btn" onclick="switchTab('tab3')">top yappers foru</button>
+                <button class="tab-btn" onclick="switchTab('tab4')">top yapper Tria</button>
             </div>
             <div class="total-count">
                 Total: <strong id="totalCount">0</strong>
@@ -301,6 +303,40 @@
             </div>
 
             <div class="list-container" id="listContainer2">
+                <!-- User items akan di-generate di sini -->
+            </div>
+        </div>
+
+        <!-- TAB 3: top yappers foru -->
+        <div id="tab3" class="tab-content">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput3" 
+                    placeholder="Cari username..."
+                >
+                <button class="btn-reset" onclick="resetSearch(3)">Reset</button>
+            </div>
+
+            <div class="list-container" id="listContainer3">
+                <!-- User items akan di-generate di sini -->
+            </div>
+        </div>
+
+        <!-- TAB 4: top yapper Tria -->
+        <div id="tab4" class="tab-content">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput4" 
+                    placeholder="Cari username..."
+                >
+                <button class="btn-reset" onclick="resetSearch(4)">Reset</button>
+            </div>
+
+            <div class="list-container" id="listContainer4">
                 <!-- User items akan di-generate di sini -->
             </div>
         </div>
@@ -519,8 +555,397 @@
             { handle: 'StarPlatinum_' }
         ];
 
+        // Data pengguna Tab 3 - top yappers foru
+        const users3 = [
+            { handle: 'RichesInCrypto' },
+            { handle: 'morhplay' },
+            { handle: 'GurlShild' },
+            { handle: 'pangxuekai' },
+            { handle: 'Samplaydirtyy' },
+            { handle: 'orpheuzkaze' },
+            { handle: 'Savvy_770' },
+            { handle: 'GremzyXYZ' },
+            { handle: 'CharlesDin1521' },
+            { handle: 'Cjay_BTC' },
+            { handle: 'Zaynolexuz' },
+            { handle: 'HyperXOscar' },
+            { handle: 'Caleb_565' },
+            { handle: 'AchukaGracious' },
+            { handle: 'yorickjpg' },
+            { handle: 'dmitrysssss' },
+            { handle: 'YemmieKuti' },
+            { handle: 'mazwhale' },
+            { handle: 'Ehmkay_Crypt' },
+            { handle: 'aki_silverfox' },
+            { handle: 'ghudhee' },
+            { handle: 'CryptoBoss1984' },
+            { handle: 'MrPower1212' },
+            { handle: 'keenn_eth' },
+            { handle: 'MikeelOdera' },
+            { handle: 'DeCrypto_Ghurl' },
+            { handle: 'carlxbt' },
+            { handle: 'rifatNFTs' },
+            { handle: '0xYarka' },
+            { handle: 'erkingzweb3' },
+            { handle: 'vty033767' },
+            { handle: 'ManLyNFT' },
+            { handle: 'MaulidiA99428' },
+            { handle: 'Bellickkruz' },
+            { handle: 'xlouiscrypto' },
+            { handle: 'caps_eth' },
+            { handle: 'skaucat7' },
+            { handle: '54yl1' },
+            { handle: 'raintures' },
+            { handle: 'Seven173173' },
+            { handle: 'krypt0kwack' },
+            { handle: 'LordOfAlts' },
+            { handle: 'AkaBull_' },
+            { handle: 'Deestar' },
+            { handle: 'Yasmina_sm' },
+            { handle: '0xc06' },
+            { handle: 'Langerius' },
+            { handle: 'Kudabajingan' },
+            { handle: 'aleksamil_' },
+            { handle: 'timon_nick' },
+            { handle: 'kearneyy' },
+            { handle: 'Ikedirichi1' },
+            { handle: 'DaCryptoGeneral' },
+            { handle: 'godbreathed' },
+            { handle: 'Biggestgirl70' },
+            { handle: 'tiur_eth' },
+            { handle: 'desola__xn' },
+            { handle: 'korexdeegreat' },
+            { handle: 'chainstellar' },
+            { handle: 'PACKETPISCES' },
+            { handle: 'MookieNFT' },
+            { handle: 'Ucan_Coin' },
+            { handle: '0x_Empire' },
+            { handle: 'kri_krypto' },
+            { handle: 'sodislikea' },
+            { handle: 'WorldOfMercek' },
+            { handle: 'ajah_elube' },
+            { handle: 'mbexbt' },
+            { handle: 'theothello007' },
+            { handle: 'HoangTrungDS' },
+            { handle: 'Rissing_stars' },
+            { handle: 'XakerNeo1' },
+            { handle: 'truonggiangle99' },
+            { handle: '0xRonin' },
+            { handle: '0xNoldor' },
+            { handle: 'Crypto_Yoz' },
+            { handle: 'EnejiTrust' },
+            { handle: 'world_invade' },
+            { handle: 'Edayoudo01' },
+            { handle: 'rendirendikaa' },
+            { handle: 'Sparxonchain' },
+            { handle: 'galvin_le_' },
+            { handle: 'Catchqgg' },
+            { handle: 'TheMayorOfIfe' },
+            { handle: 'morsyxbt' },
+            { handle: 'AfolabiGreen' },
+            { handle: 'Axe9505' },
+            { handle: 'vmhoangit1408' },
+            { handle: 'ikiscream' },
+            { handle: '0xtyrmeapart' },
+            { handle: 'Patch007_' },
+            { handle: 'coinhunter_X' },
+            { handle: 'Nseabasietim215' },
+            { handle: 'MichelePS96' },
+            { handle: 'limpong1' },
+            { handle: 'Usman_Web3' },
+            { handle: 'himakiti2022' },
+            { handle: 'Elinaaruby' },
+            { handle: 'smqclaske' },
+            { handle: 'SeniorDeFi' },
+            { handle: 'Towertech_' },
+            { handle: 'CoorvinuuS' },
+            { handle: 'iLLugam' },
+            { handle: 'Queensley21' },
+            { handle: 'Dani247g' },
+            { handle: 'Dami_btc' },
+            { handle: 'Adri_anal1' },
+            { handle: 'stellarlumens29' },
+            { handle: 'joshdewriter' },
+            { handle: 'milo_milo1123' },
+            { handle: 'Airdroploverrr' },
+            { handle: 'bluzabs_' },
+            { handle: 'Haruto_00h' },
+            { handle: 'CryptoSohail_' },
+            { handle: 'Curator_Bling' },
+            { handle: 'EtMeSolta' },
+            { handle: 'jade_babyyyyy' },
+            { handle: 'XiaoZhi_BTC' },
+            { handle: 'Web3Rehman' },
+            { handle: 'stuyzy27' },
+            { handle: 'HannahKrypt' },
+            { handle: 'shalom_web3' },
+            { handle: 'mislead123' },
+            { handle: 'seongmoolee' },
+            { handle: 'coinmemes' },
+            { handle: 'ericnorman483' },
+            { handle: 'ZhugeLyang' },
+            { handle: 'Montiweb3' },
+            { handle: 'HieuTrinhVn' },
+            { handle: '0xCriipa' },
+            { handle: 'Young_bakerr' },
+            { handle: 'thtguyt' },
+            { handle: 'callme_lanry' },
+            { handle: 'BIGHEM_' },
+            { handle: 'Micky_kayyy' },
+            { handle: 'boycrypto011' },
+            { handle: 'pilyears' },
+            { handle: 'Obyno25_' },
+            { handle: 'DeeJay_of_WEB3' },
+            { handle: '0xSAFINCRYPTO' },
+            { handle: 'BunnyCrypt21' },
+            { handle: 'qodedstuff' },
+            { handle: '0x3mmnu3l' },
+            { handle: 'EddieClone' },
+            { handle: 'yyndsssss' },
+            { handle: 'GaoZi_rebirth' },
+            { handle: 'zheyiguanjsn' },
+            { handle: 'he_isemperor' },
+            { handle: 'GuruMetras1' },
+            { handle: 'Santa_TON1' },
+            { handle: 'bukuncrypt' },
+            { handle: 'fabulous__xx' },
+            { handle: 'xosiriusx' },
+            { handle: 'NEAR_tg' },
+            { handle: 'Nyancatoypf' },
+            { handle: 'Eddy3163834' },
+            { handle: 'adeniyiontwit' },
+            { handle: '0fficialSeyiGee' },
+            { handle: 'Mr7Seven77' },
+            { handle: 'Ma_wheen' },
+            { handle: 'aselolee99' },
+            { handle: 'Benzempire2021' },
+            { handle: 'ByteByBytee_' },
+            { handle: 'KetchumNfts' },
+            { handle: 'CryptoPlays_' },
+            { handle: 'rahacrypt' },
+            { handle: '0xRimas' }
+        ];
+
+        // Data pengguna Tab 4 - top yapper Tria
+        const users4 = [
+            { handle: '0xSammy' },
+            { handle: 'Jampzey' },
+            { handle: 'Legendaryy' },
+            { handle: 'TimHaldorsson' },
+            { handle: 'treeonchain' },
+            { handle: 'QuintenFrancois' },
+            { handle: 'Hydraze420' },
+            { handle: 'DrEinstein9999' },
+            { handle: 'eeelistar' },
+            { handle: 'AvalancheXBT' },
+            { handle: 'davidonchainx' },
+            { handle: 'standotsui' },
+            { handle: 'Alaouicapital' },
+            { handle: 'DeFi_Hanzo' },
+            { handle: 'BitmanTW' },
+            { handle: '0xJeff' },
+            { handle: 'BBCrypt0' },
+            { handle: 'MurphyBTC' },
+            { handle: 'CryptoUsopp' },
+            { handle: 'YusufGemz' },
+            { handle: 'patryx' },
+            { handle: 'taka__crypto' },
+            { handle: 'KongBTC' },
+            { handle: 'CryptoEights' },
+            { handle: 'zaimiri' },
+            { handle: 'Pchild_NFT' },
+            { handle: '0xOziK' },
+            { handle: 'pukerrainbrow' },
+            { handle: 'EvaHung1223' },
+            { handle: 'CryboCrypto' },
+            { handle: 'BagCalls' },
+            { handle: 'hitasyurek' },
+            { handle: 'KHFRHN' },
+            { handle: 'nobrainflip' },
+            { handle: 'akiii345' },
+            { handle: 'nuhbatuhann' },
+            { handle: 'grebbycrypto' },
+            { handle: 'evokein' },
+            { handle: 'kingfxyo' },
+            { handle: 'TheAstornia' },
+            { handle: 'AltcoinAce_X' },
+            { handle: 'passionguy901' },
+            { handle: 'lisbongg' },
+            { handle: 'NewPaguinfo' },
+            { handle: '0xGloryFi' },
+            { handle: 'Montiweb3' },
+            { handle: 'samtree__' },
+            { handle: 'nftkira_kr' },
+            { handle: 'xerocooleth' },
+            { handle: 'niceguy0911' },
+            { handle: 'Web3Niels' },
+            { handle: 'kagi_bcg' },
+            { handle: 'A4lLfa7' },
+            { handle: '888marui' },
+            { handle: 'gemsmorro' },
+            { handle: 'shu_gcrypto' },
+            { handle: 'ridaatul_islam' },
+            { handle: 'KuzuProducerZ' },
+            { handle: 'Airdrop_Lin' },
+            { handle: 'cry_curr_ar' },
+            { handle: 'kobegodddd' },
+            { handle: '0xdoha' },
+            { handle: 'Doboongkun' },
+            { handle: 'ShinKiro14' },
+            { handle: 'diegomguido16' },
+            { handle: 'HyunkunO' },
+            { handle: 'shinymiso' },
+            { handle: 'DegenArchit3ct' },
+            { handle: 'MDSAGORISL19566' },
+            { handle: 'Veltrix420' },
+            { handle: 'sergendemirtass' },
+            { handle: 'marcuslayerx' },
+            { handle: 'MrDegenMax' },
+            { handle: 'no_8_eight' },
+            { handle: 'Voss__kai' },
+            { handle: 'kangmurphy' },
+            { handle: 'Rosaaa' },
+            { handle: 'Lleokingg' },
+            { handle: 'nishanxx0' },
+            { handle: 'zeroknowledge01' },
+            { handle: 'setyamickala' },
+            { handle: 'bounty_atm' },
+            { handle: 'cryptoholic2200' },
+            { handle: 'dcrypto' },
+            { handle: 'iagosnews' },
+            { handle: 'CENTWT' },
+            { handle: 'ausbro80' },
+            { handle: 'brrrskuy' },
+            { handle: 'totory_1' },
+            { handle: 'DegenAllinBTC' },
+            { handle: 'r_rainss' },
+            { handle: 'HashLordX' },
+            { handle: '0xCuseyo' },
+            { handle: 'ahmedsh61404904' },
+            { handle: 'Mdnaimevai11' },
+            { handle: 'gokorea2022' },
+            { handle: 'estridthelion' },
+            { handle: 'playpoint767' },
+            { handle: 'Crypto_M24' },
+            { handle: 'nftwangg1998' },
+            { handle: '18and28' },
+            { handle: 'UgurYurnuk' },
+            { handle: 'HUR_YG' },
+            { handle: 'hannipmanjusayo' },
+            { handle: 'nezuron_' },
+            { handle: 'yadon0301' },
+            { handle: 'Crypto_nana' },
+            { handle: 'markcoin_mk' },
+            { handle: 'Sion_Forever82' },
+            { handle: 'Yeonsik_X' },
+            { handle: 'ovddak300' },
+            { handle: 'NftUniv' },
+            { handle: '0xsaragi' },
+            { handle: 'racoooncom' },
+            { handle: 'itsmecapa' },
+            { handle: 'KrakenLens' },
+            { handle: 'Yari_kiru' },
+            { handle: 'ammyfex' },
+            { handle: 'Mizanourmrp' },
+            { handle: 'Ok_Attraction' },
+            { handle: 'eps_morning' },
+            { handle: 'spoilerbull' },
+            { handle: 'hakuniii2526' },
+            { handle: 'Birong2' },
+            { handle: 'Brianparkinglot' },
+            { handle: 'xxxxxxxxxxx456' },
+            { handle: 'Mark0xmark' },
+            { handle: '0mgm4d' },
+            { handle: 'sonsakripto' },
+            { handle: 'Lucifero_mf' },
+            { handle: 'Rradnan0' },
+            { handle: 'huybt8' },
+            { handle: 'hisarchitect87' },
+            { handle: 'GamefiCrusher' },
+            { handle: 'dazzlercoin' },
+            { handle: 'HibTs61' },
+            { handle: 'common91' },
+            { handle: 'Cqy4ZDH3k8aF3Lv' },
+            { handle: 'coinlikecoin' },
+            { handle: 'ethmaxi' },
+            { handle: 'Trust_mit' },
+            { handle: 'nftnewstotal' },
+            { handle: 'thunderxdxd' },
+            { handle: 'dri_poo' },
+            { handle: 'dakydaky3600' },
+            { handle: 'gomtu_xyz' },
+            { handle: 'azwardiiqbal' },
+            { handle: 'magnata196' },
+            { handle: 'busigjang6573' },
+            { handle: 'Whitecube72' },
+            { handle: 'corvl22' },
+            { handle: 'AnikiCrypto' },
+            { handle: 'naion_islam' },
+            { handle: 'yoonjaecheol1' },
+            { handle: 'JepoBuilds' },
+            { handle: 'ljh12080' },
+            { handle: 'baegseungh7061' },
+            { handle: 'Ashif_TTA' },
+            { handle: 'bz_dndka2' },
+            { handle: 'Bugi952' },
+            { handle: '0xValmir' },
+            { handle: 'alslalsl033' },
+            { handle: '1974sky' },
+            { handle: 'teihencrypto' },
+            { handle: 'tappi365' },
+            { handle: 'youngkira8247' },
+            { handle: 'Cryptojjong' },
+            { handle: 'LanHua27' },
+            { handle: 'ttogmo2' },
+            { handle: 'ky_155' },
+            { handle: 'Yuu__jiro' },
+            { handle: 'asaru69' },
+            { handle: 'iris_lord625' },
+            { handle: 'Tarara873865' },
+            { handle: 'ruin3196' },
+            { handle: 'fakehamster_' },
+            { handle: 'koup4028' },
+            { handle: '0xjason3333' },
+            { handle: 'lmslms1004' },
+            { handle: 'kyunionz' },
+            { handle: 'rezalos' },
+            { handle: 'd33genist' },
+            { handle: 'neko_smg' },
+            { handle: 'KiWoonMun1' },
+            { handle: 'yurusanaiinu' },
+            { handle: 'AlaladeAyomide6' },
+            { handle: 'world_invade' },
+            { handle: 'ArashSeyf' },
+            { handle: 'admen_vc_2' },
+            { handle: 'NguynLa82061156' },
+            { handle: 'bitcoin_che' },
+            { handle: 'piessavior' },
+            { handle: 'Gyokeres_eth' },
+            { handle: 'worldkai123' },
+            { handle: 'xiaohao67942591' },
+            { handle: 'IsrafilOnchain' },
+            { handle: 'liaoblove520' },
+            { handle: 'michaeltothey' },
+            { handle: 'RiddlerNFT' },
+            { handle: 'doruOlt' },
+            { handle: 'youyou8178' },
+            { handle: 'Choccdotsui' },
+            { handle: 'Web3heibai' },
+            { handle: 'memonic_johnny' },
+            { handle: 'dee_nftarmy' },
+            { handle: 'rizky_syahreza' },
+            { handle: 'seongmoolee' },
+            { handle: 'GpaAndy' },
+            { handle: 'wjf110' },
+            { handle: 'Zephyroxweb3' },
+            { handle: 'itskkoma' },
+            { handle: 'thisstom1' }
+        ];
+
         let filteredUsers1 = [...users1];
         let filteredUsers2 = [...users2];
+        let filteredUsers3 = [...users3];
+        let filteredUsers4 = [...users4];
 
         function renderUsers(tabNum, usersToRender) {
             const container = document.getElementById(`listContainer${tabNum}`);
@@ -549,34 +974,52 @@
         }
 
         function updateCount(tabNum) {
-            const users = tabNum === 1 ? filteredUsers1 : filteredUsers2;
+            let users;
+            if (tabNum === 1) users = filteredUsers1;
+            else if (tabNum === 2) users = filteredUsers2;
+            else if (tabNum === 3) users = filteredUsers3;
+            else if (tabNum === 4) users = filteredUsers4;
+            
             document.getElementById('totalCount').textContent = users.length;
         }
 
         function searchUsers(tabNum, query) {
             const lowerQuery = query.toLowerCase();
-            const users = tabNum === 1 ? users1 : users2;
-            const filtered = users.filter(user => 
+            let users, filtered;
+            
+            if (tabNum === 1) users = users1;
+            else if (tabNum === 2) users = users2;
+            else if (tabNum === 3) users = users3;
+            else if (tabNum === 4) users = users4;
+            
+            filtered = users.filter(user => 
                 user.handle.toLowerCase().includes(lowerQuery)
             );
             
-            if (tabNum === 1) {
-                filteredUsers1 = filtered;
-            } else {
-                filteredUsers2 = filtered;
-            }
+            if (tabNum === 1) filteredUsers1 = filtered;
+            else if (tabNum === 2) filteredUsers2 = filtered;
+            else if (tabNum === 3) filteredUsers3 = filtered;
+            else if (tabNum === 4) filteredUsers4 = filtered;
             
             renderUsers(tabNum, filtered);
         }
 
         function resetSearch(tabNum) {
             document.getElementById(`searchInput${tabNum}`).value = '';
+            let users;
+            
             if (tabNum === 1) {
                 filteredUsers1 = [...users1];
                 renderUsers(1, filteredUsers1);
-            } else {
+            } else if (tabNum === 2) {
                 filteredUsers2 = [...users2];
                 renderUsers(2, filteredUsers2);
+            } else if (tabNum === 3) {
+                filteredUsers3 = [...users3];
+                renderUsers(3, filteredUsers3);
+            } else if (tabNum === 4) {
+                filteredUsers4 = [...users4];
+                renderUsers(4, filteredUsers4);
             }
         }
 
@@ -594,7 +1037,7 @@
             event.target.classList.add('active');
 
             // Update count based on tab
-            const tabNum = tabName === 'tab1' ? 1 : 2;
+            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : 4));
             updateCount(tabNum);
         }
 
@@ -621,9 +1064,19 @@
             searchUsers(2, e.target.value);
         });
 
+        document.getElementById('searchInput3').addEventListener('keyup', (e) => {
+            searchUsers(3, e.target.value);
+        });
+
+        document.getElementById('searchInput4').addEventListener('keyup', (e) => {
+            searchUsers(4, e.target.value);
+        });
+
         // Initial render
         renderUsers(1, users1);
         renderUsers(2, users2);
+        renderUsers(3, users3);
+        renderUsers(4, users4);
     </script>
 </body>
 </html>
