@@ -267,6 +267,7 @@
                 <button class="tab-btn" onclick="switchTab('tab2')">top100 kaito CT</button>
                 <button class="tab-btn" onclick="switchTab('tab3')">top yappers foru</button>
                 <button class="tab-btn" onclick="switchTab('tab4')">top yapper Tria</button>
+                <button class="tab-btn" onclick="switchTab('tab5')">hypercooc yapper</button>
             </div>
             <div class="total-count">
                 Total: <strong id="totalCount">0</strong>
@@ -337,6 +338,23 @@
             </div>
 
             <div class="list-container" id="listContainer4">
+                <!-- User items akan di-generate di sini -->
+            </div>
+        </div>
+
+        <!-- TAB 5: hypercooc yapper -->
+        <div id="tab5" class="tab-content">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput5" 
+                    placeholder="Cari username..."
+                >
+                <button class="btn-reset" onclick="resetSearch(5)">Reset</button>
+            </div>
+
+            <div class="list-container" id="listContainer5">
                 <!-- User items akan di-generate di sini -->
             </div>
         </div>
@@ -955,10 +973,215 @@
             { handle: 'thisstom1' }
         ];
 
+        // Data pengguna Tab 5 - hypercooc yapper
+        const users5 = [
+            { handle: '0xKren' },
+            { handle: 'Peymannaderi_' },
+            { handle: '0xVaha' },
+            { handle: 'BlexCrypto' },
+            { handle: 'Alok7765' },
+            { handle: 'OGFIGO' },
+            { handle: '77bncvbsdcg' },
+            { handle: 'ricardomilos35' },
+            { handle: 'sajiiiiiiii8' },
+            { handle: 'JosephineL47094' },
+            { handle: '0xsorena' },
+            { handle: 'Fairu_90' },
+            { handle: 'marwahuwan' },
+            { handle: 'knickcharles05' },
+            { handle: '0xerfa' },
+            { handle: 'Habib_NGU' },
+            { handle: 'cxmrondlls' },
+            { handle: 'sommmie_lynn' },
+            { handle: 'rajkumaar21' },
+            { handle: 'Chubby1E' },
+            { handle: '0xZephh' },
+            { handle: 'teslimot04' },
+            { handle: 'Homele3ss' },
+            { handle: 'Mm3yap' },
+            { handle: 'LilyETH777' },
+            { handle: 'tikooww' },
+            { handle: 'Trathoa' },
+            { handle: 'hoasky1894' },
+            { handle: '7marshm7allow' },
+            { handle: 'BTC99M' },
+            { handle: 'NKLinhzk' },
+            { handle: 'INOKAMIKAGURA' },
+            { handle: 'CelesteDroper' },
+            { handle: 'behnam_naziri' },
+            { handle: 'Seven_Nguyen666' },
+            { handle: 'FROSH_0x' },
+            { handle: 'Mini_Bitcoines' },
+            { handle: 'BitBlitzBuzz' },
+            { handle: 'Akira1910531' },
+            { handle: 'ebenezerox' },
+            { handle: 'toktiol' },
+            { handle: 'CryptoAll3in' },
+            { handle: 'Harry_WebX' },
+            { handle: 'bantr_king' },
+            { handle: 'ostadkachal' },
+            { handle: 'zangx0' },
+            { handle: 'BlaqOnyemauche' },
+            { handle: 'All3in4out' },
+            { handle: '0xMahdiya' },
+            { handle: 'ItsSun' },
+            { handle: 'sultan_4pf' },
+            { handle: 'Milonsa87650356' },
+            { handle: 'CryptoViper_' },
+            { handle: 'pLG67_jav_mood' },
+            { handle: 'Versiqxyz' },
+            { handle: 'De_Blessed01' },
+            { handle: 'MMohammadhose' },
+            { handle: 'kylieroodi' },
+            { handle: 'Botboyyyyyyyyyy' },
+            { handle: 'LiquidZeek_' },
+            { handle: '0xOscarr' },
+            { handle: 'omarfade_' },
+            { handle: 'eth_Mythic49' },
+            { handle: 'thenameisfedro' },
+            { handle: 'liangkuaihaofan' },
+            { handle: 'Lancaster_eth' },
+            { handle: 'OnlyPulo' },
+            { handle: 'Adele7731' },
+            { handle: 'mannie_o1' },
+            { handle: 'CyberEliteX' },
+            { handle: 'Debest_King' },
+            { handle: 'RayhanTreader' },
+            { handle: 'LFG100Z' },
+            { handle: 'KingChris10TH' },
+            { handle: 'OlaoluwaG78701' },
+            { handle: 'Hypercroc_xyz' },
+            { handle: 'rahul19_rahul' },
+            { handle: 'kajalbas23kd' },
+            { handle: 'Rexzie_Fran' },
+            { handle: 'mizzelaalphax' },
+            { handle: 'light_exist01' },
+            { handle: 'sahar1371ak' },
+            { handle: 'andy1eth' },
+            { handle: 'Natalia77351991' },
+            { handle: 'AnchorNode' },
+            { handle: 'BennTugba' },
+            { handle: 'Anegbe_' },
+            { handle: '0xtheshai' },
+            { handle: 'darkCrypto_01' },
+            { handle: 'GeroXBT' },
+            { handle: 'On4on74' },
+            { handle: 'sonsakripto' },
+            { handle: 'el_chapo_XX' },
+            { handle: 'TheMithri' },
+            { handle: 'Elvis_109' },
+            { handle: 'mazwhale' },
+            { handle: '0xweb3engineer' },
+            { handle: 'uksuyy' },
+            { handle: 'shakuhx911' },
+            { handle: 'Sabbir69Here' },
+            { handle: 'NalyMetaX' },
+            { handle: 'noahrufai' },
+            { handle: 'mikasa_1322' },
+            { handle: 'itsmepjxg3' },
+            { handle: 'Isibenji_1' },
+            { handle: 'Bakioption' },
+            { handle: 'Web3Sam10' },
+            { handle: 'kernetmu' },
+            { handle: '0x_NekoNinja' },
+            { handle: 'Enoch_MVPs' },
+            { handle: '0xHecktor' },
+            { handle: 'Hu12302' },
+            { handle: 'Mohito234' },
+            { handle: 'OKCX66' },
+            { handle: 'sunnhi4122' },
+            { handle: 'OxAryan' },
+            { handle: 'thelearningpill' },
+            { handle: 'alveejack1' },
+            { handle: 'solMstarX' },
+            { handle: 'sjw_bydata' },
+            { handle: 'maryamshokohui' },
+            { handle: 'Reex_sol' },
+            { handle: 'sharpino01' },
+            { handle: 'ShazeemiS' },
+            { handle: '0xLani83' },
+            { handle: '0xRexnftcrypto' },
+            { handle: 'Cryp_toba' },
+            { handle: '0xkajiang' },
+            { handle: 'sozdetrader' },
+            { handle: '0xkazuqi' },
+            { handle: 'haonguyen6868' },
+            { handle: 'OrcaWynn' },
+            { handle: 'BlaqueMide' },
+            { handle: 'rrrrbtc' },
+            { handle: 'mahsa_tin' },
+            { handle: 'marjohety' },
+            { handle: 'Yamisobeauty' },
+            { handle: 'NQCiao' },
+            { handle: 'CMCRZETH' },
+            { handle: 'tinaa2526' },
+            { handle: '0xpeat' },
+            { handle: 'SS8KK1' },
+            { handle: 'im3mortal' },
+            { handle: 'Nhuyna1234' },
+            { handle: 'YutaWeb33' },
+            { handle: 'hypilio' },
+            { handle: 'kocheings' },
+            { handle: 'Youshiitaa' },
+            { handle: 'fillipsxn' },
+            { handle: 'quynncrypto' },
+            { handle: 'OxWuyForMe' },
+            { handle: 'HaiNguy1' },
+            { handle: 'HoldHustler__' },
+            { handle: 'REHANH0SSAIN' },
+            { handle: 'AizenaborJ' },
+            { handle: 'Bulldefi01' },
+            { handle: 'eth_Sadie0x' },
+            { handle: 'chibuikem876' },
+            { handle: 'GLHFbuy' },
+            { handle: 'Marvo_47' },
+            { handle: 'zeru_web3' },
+            { handle: 'Kelvinkhute1' },
+            { handle: 'youjoeofficial' },
+            { handle: 'aripurahita13' },
+            { handle: 'AngDato' },
+            { handle: 'Raayxbt' },
+            { handle: 'shredder_tegg' },
+            { handle: 'OkekeBenedict13' },
+            { handle: 'MRR1572' },
+            { handle: 'Jujaki_01' },
+            { handle: 'abahbero' },
+            { handle: 'hosquire' },
+            { handle: 'Zing_X' },
+            { handle: 'vuongminhzz689' },
+            { handle: 'd00ugh' },
+            { handle: 'baiyijiuba' },
+            { handle: '0xUncleB' },
+            { handle: 'Meow78600' },
+            { handle: 'xSilentInvestor' },
+            { handle: 'Zeussatoshi' },
+            { handle: 'ITzINSANE_NFTs' },
+            { handle: 'SomeGuy1_10' },
+            { handle: '0xlarynx' },
+            { handle: 'FengxiSakura' },
+            { handle: 'DucKhoa96' },
+            { handle: 'mhsihab110' },
+            { handle: 'monckies6' },
+            { handle: 'Xis_NFT' },
+            { handle: 'NekiWeb3' },
+            { handle: 'AbiodunIbi22753' },
+            { handle: '0xBBJ' },
+            { handle: 'thenameisfelix' },
+            { handle: 'Mr_CryptoNest' },
+            { handle: 'Airdrop_Miner07' },
+            { handle: 'Lekomchi' },
+            { handle: 'SisterOfBTC' },
+            { handle: 'Farahnaz133' },
+            { handle: 'naion_islam' },
+            { handle: 'fynex_eth' },
+            { handle: 'Takeda_defi' }
+        ];
+
         let filteredUsers1 = [...users1];
         let filteredUsers2 = [...users2];
         let filteredUsers3 = [...users3];
         let filteredUsers4 = [...users4];
+        let filteredUsers5 = [...users5];
 
         function renderUsers(tabNum, usersToRender) {
             const container = document.getElementById(`listContainer${tabNum}`);
@@ -992,6 +1215,7 @@
             else if (tabNum === 2) users = filteredUsers2;
             else if (tabNum === 3) users = filteredUsers3;
             else if (tabNum === 4) users = filteredUsers4;
+            else if (tabNum === 5) users = filteredUsers5;
             
             document.getElementById('totalCount').textContent = users.length;
         }
@@ -1004,6 +1228,7 @@
             else if (tabNum === 2) users = users2;
             else if (tabNum === 3) users = users3;
             else if (tabNum === 4) users = users4;
+            else if (tabNum === 5) users = users5;
             
             filtered = users.filter(user => 
                 user.handle.toLowerCase().includes(lowerQuery)
@@ -1013,6 +1238,7 @@
             else if (tabNum === 2) filteredUsers2 = filtered;
             else if (tabNum === 3) filteredUsers3 = filtered;
             else if (tabNum === 4) filteredUsers4 = filtered;
+            else if (tabNum === 5) filteredUsers5 = filtered;
             
             renderUsers(tabNum, filtered);
         }
@@ -1033,6 +1259,9 @@
             } else if (tabNum === 4) {
                 filteredUsers4 = [...users4];
                 renderUsers(4, filteredUsers4);
+            } else if (tabNum === 5) {
+                filteredUsers5 = [...users5];
+                renderUsers(5, filteredUsers5);
             }
         }
 
@@ -1050,7 +1279,7 @@
             event.target.classList.add('active');
 
             // Update count based on tab
-            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : 4));
+            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : (tabName === 'tab4' ? 4 : 5)));
             updateCount(tabNum);
         }
 
@@ -1085,11 +1314,16 @@
             searchUsers(4, e.target.value);
         });
 
+        document.getElementById('searchInput5').addEventListener('keyup', (e) => {
+            searchUsers(5, e.target.value);
+        });
+
         // Initial render
         renderUsers(1, users1);
         renderUsers(2, users2);
         renderUsers(3, users3);
         renderUsers(4, users4);
+        renderUsers(5, users5);
     </script>
 </body>
 </html>
