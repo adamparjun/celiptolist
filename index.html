@@ -146,6 +146,11 @@
             flex-shrink: 0;
         }
 
+        .number.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+        }
+
         .user-info {
             flex: 1;
             min-width: 0;
@@ -185,6 +190,16 @@
         .btn-visit {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+        }
+
+        .btn-visit.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+        }
+
+        .btn-visit.gold:active {
+            opacity: 0.8;
+            transform: scale(0.95);
         }
 
         .btn-visit:active {
@@ -509,7 +524,37 @@
             { handle: 'mayflowers2x8' },
             { handle: 'Jhon37419413175' },
             { handle: '6th__account' },
-            { handle: 'DeimosWeb3' }
+            { handle: 'DeimosWeb3' },
+            { handle: 'camolNFT', gold: true },
+            { handle: 'zjbrenner', gold: true },
+            { handle: 'j0hnwang', gold: true },
+            { handle: 'sjdedic', gold: true },
+            { handle: 'eeelistar', gold: true },
+            { handle: '0x_xifeng', gold: true },
+            { handle: '_gvan', gold: true },
+            { handle: '0xGrimjow', gold: true },
+            { handle: 'kryptobaby777', gold: true },
+            { handle: 'MadVincent666', gold: true },
+            { handle: '0x_Abdul', gold: true },
+            { handle: 'wagmigently', gold: true },
+            { handle: 'Punk9277', gold: true },
+            { handle: 'JonahBlake', gold: true },
+            { handle: 'themansion_eth', gold: true },
+            { handle: 'serpinxbt', gold: true },
+            { handle: 'HYPEconomist', gold: true },
+            { handle: 'Carlitoswa_y', gold: true },
+            { handle: 'tylerdurdeth', gold: true },
+            { handle: '0xFrisk', gold: true },
+            { handle: 'andyyy', gold: true },
+            { handle: 'banditxbt', gold: true },
+            { handle: 'happysubstack', gold: true },
+            { handle: 'knowerofmarkets', gold: true },
+            { handle: 'Ajwritescrypto', gold: true },
+            { handle: 'cryptoleon_xyz', gold: true },
+            { handle: 'MLeeJr', gold: true },
+            { handle: 'lililashka', gold: true },
+            { handle: 'katexbt', gold: true },
+            { handle: 'pukerrainbrow', gold: true }
         ];
 
         // Data pengguna Tab 2
@@ -1223,13 +1268,15 @@
 
             container.innerHTML = usersToRender.map((user, index) => `
                 <div class="user-item">
-                    <div class="number">${index + 1}</div>
+                    <div class="number ${user.gold ? 'gold' : ''}">
+                        ${index + 1}
+                    </div>
                     <div class="user-info">
                         <div class="user-handle">@${user.handle}</div>
                         <a href="https://x.com/${user.handle}" target="_blank" class="user-link">x.com/${user.handle}</a>
                     </div>
                     <div class="action-buttons">
-                        <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit">Buka</a>
+                        <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit ${user.gold ? 'gold' : ''}">Buka</a>
                         <button class="btn btn-copy" onclick="copyToClipboard('@${user.handle}')">Salin</button>
                     </div>
                 </div>
