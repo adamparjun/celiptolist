@@ -170,6 +170,12 @@
             font-size: 0.75em;
         }
 
+        .user-stats {
+            font-size: 0.75em;
+            color: #666;
+            margin-top: 4px;
+        }
+
         .action-buttons {
             display: flex;
             gap: 6px;
@@ -283,6 +289,7 @@
                 <button class="tab-btn" onclick="switchTab('tab3')">top yappers foru</button>
                 <button class="tab-btn" onclick="switchTab('tab4')">top yapper Tria</button>
                 <button class="tab-btn" onclick="switchTab('tab5')">hypercooc yapper</button>
+                <button class="tab-btn" onclick="switchTab('tab6')">polygon top yappers</button>
             </div>
             <div class="total-count">
                 Total: <strong id="totalCount">0</strong>
@@ -370,6 +377,23 @@
             </div>
 
             <div class="list-container" id="listContainer5">
+                <!-- User items akan di-generate di sini -->
+            </div>
+        </div>
+
+        <!-- TAB 6: polygon top yappers -->
+        <div id="tab6" class="tab-content">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput6" 
+                    placeholder="Cari username..."
+                >
+                <button class="btn-reset" onclick="resetSearch(6)">Reset</button>
+            </div>
+
+            <div class="list-container" id="listContainer6">
                 <!-- User items akan di-generate di sini -->
             </div>
         </div>
@@ -1251,11 +1275,115 @@
             { handle: 'Takeda_defi' }
         ];
 
+        // Data pengguna Tab 6 - polygon top yappers (dengan Smart dan Followers)
+        const users6 = [
+            { handle: 'sandeepnailwal', smart: 4634, followers: 349246 },
+            { handle: 'Smokey_', smart: 1312, followers: 42286 },
+            { handle: '0xAishwary', smart: 557, followers: 14336 },
+            { handle: '0xMarcB', smart: 1963, followers: 23831 },
+            { handle: 'GianTheRios', smart: 1364, followers: 17656 },
+            { handle: 'obchakevich_', smart: 762, followers: 66631 },
+            { handle: 'R2D2zen', smart: 270, followers: 14246 },
+            { handle: 'nofuture', smart: 600, followers: 12943 },
+            { handle: 'Carlitoswa_y', smart: 1284, followers: 31621 },
+            { handle: 'Jampzey', smart: 2076, followers: 117759 },
+            { handle: 'Scav', smart: 571, followers: 4345 },
+            { handle: '0x002timmy', smart: 323, followers: 6444 },
+            { handle: 'Supers6061', smart: 236, followers: 99891 },
+            { handle: 'jgonzalezferrer', smart: 623, followers: 61869 },
+            { handle: 'Picolas_Caged', smart: 616, followers: 16363 },
+            { handle: 'Mudit__Gupta', smart: 3125, followers: 69123 },
+            { handle: '0xthegipper', smart: 960, followers: 10437 },
+            { handle: 'one_snowball', smart: 348, followers: 72480 },
+            { handle: 'KhanAbbas201', smart: 1090, followers: 19738 },
+            { handle: 'BuTongRen6', smart: 144, followers: 10419 },
+            { handle: 'KevinWSHPod', smart: 1744, followers: 59597 },
+            { handle: 'chainyoda', smart: 2791, followers: 42712 },
+            { handle: 'LennaertSnyder', smart: 338, followers: 38601 },
+            { handle: 'divine_economy', smart: 3286, followers: 77310 },
+            { handle: 'BrianSeong', smart: 337, followers: 4249 },
+            { handle: 'youngsun', smart: 846, followers: 14093 },
+            { handle: 'rtk17025', smart: 125, followers: 5561 },
+            { handle: 'petertherock', smart: 393, followers: 3242 },
+            { handle: 'WEB3Eliza', smart: 624, followers: 92549 },
+            { handle: 'xingxingjun8888', smart: 310, followers: 44178 },
+            { handle: 'bitfalls', smart: 962, followers: 33574 },
+            { handle: 'monitalan', smart: 251, followers: 12967 },
+            { handle: 'MOODOO_Diary', smart: 256, followers: 13529 },
+            { handle: 'gn_zebraleyuan', smart: 162, followers: 57339 },
+            { handle: 'naruto11eth', smart: 1420, followers: 21664 },
+            { handle: 'shivst3r', smart: 1798, followers: 51709 },
+            { handle: 'leonstern', smart: 268, followers: 2811 },
+            { handle: 'davidesilverman', smart: 1387, followers: 11238 },
+            { handle: 'AdebiyiChosen', smart: 65, followers: 1431 },
+            { handle: 'grebbycrypto', smart: 370, followers: 55293 },
+            { handle: 'walsxbt', smart: 803, followers: 30823 },
+            { handle: 'rektonomist_', smart: 503, followers: 27150 },
+            { handle: 'Febers4', smart: 321, followers: 8204 },
+            { handle: 'chaozuoye', smart: 177, followers: 54380 },
+            { handle: 'dee_nftarmy', smart: 97, followers: 5911 },
+            { handle: 'EliBenSasson', smart: 2619, followers: 50649 },
+            { handle: 'Nxtlvl', smart: 217, followers: 9378 },
+            { handle: 'Rakermoon', smart: 182, followers: 11669 },
+            { handle: '73lV_', smart: 494, followers: 70972 },
+            { handle: 'zhuanfgghjnb', smart: 325, followers: 147152 },
+            { handle: 'xincctnnq', smart: 289, followers: 100067 },
+            { handle: 'xerocooleth', smart: 1759, followers: 72115 },
+            { handle: 'namnin_kr', smart: 164, followers: 4996 },
+            { handle: 'AndrewAsksHow', smart: 1588, followers: 38098 },
+            { handle: 'crypto_vadim', smart: 86, followers: 1968 },
+            { handle: '0xBeyondLee', smart: 505, followers: 40456 },
+            { handle: 'cryptorand', smart: 1520, followers: 333091 },
+            { handle: 'KierianV', smart: 1000, followers: 18426 },
+            { handle: 'btcpiggy', smart: 161, followers: 30386 },
+            { handle: 'btcohmann', smart: 155, followers: 65651 },
+            { handle: 'HenriLee92', smart: 140, followers: 7753 },
+            { handle: 'StarPlatinum_', smart: 1185, followers: 88633 },
+            { handle: '3liXBT', smart: 329, followers: 16677 },
+            { handle: 'uttam_singhk', smart: 776, followers: 22256 },
+            { handle: 'camolNFT', smart: 2516, followers: 69519, gold: true },
+            { handle: 'y_cryptoanalyst', smart: 372, followers: 26120 },
+            { handle: '0xJarod', smart: 162, followers: 8493 },
+            { handle: 'scottmelker', smart: 2908, followers: 1078378 },
+            { handle: 'periagoge1', smart: 195, followers: 5958 },
+            { handle: 'TheDeFinvestor', smart: 1843, followers: 161324 },
+            { handle: '0xfarmed', smart: 72, followers: 1857 },
+            { handle: 'jacqmelinek', smart: 1959, followers: 46881 },
+            { handle: 'LucBerkefeld', smart: 340, followers: 29936 },
+            { handle: 'JaysonCrypto', smart: 1605, followers: 24782 },
+            { handle: 'simplykashif', smart: 290, followers: 173615 },
+            { handle: '0xferg', smart: 1457, followers: 58387 },
+            { handle: 'abhinavsam4', smart: 9, followers: 1613 },
+            { handle: 'ddakbbam1', smart: 113, followers: 3665 },
+            { handle: '0xDeployer', smart: 1184, followers: 25996 },
+            { handle: 'BigNillCollect', smart: 601, followers: 16657 },
+            { handle: 'zaimiri', smart: 1128, followers: 55044 },
+            { handle: 'cryptofishx', smart: 1420, followers: 69926 },
+            { handle: 'ohskying', smart: 40, followers: 2106 },
+            { handle: 'iamyourchaos', smart: 500, followers: 88936 },
+            { handle: 'SolanaSensei', smart: 1170, followers: 241840 },
+            { handle: 'richardseiler', smart: 252, followers: 17320 },
+            { handle: 'ASvanevik', smart: 6141, followers: 223877 },
+            { handle: 'Li888Real', smart: 156, followers: 43076 },
+            { handle: 'tomwanhh', smart: 1114, followers: 16841 },
+            { handle: 'RiddlerNFT', smart: 920, followers: 36160 },
+            { handle: 'liuxiaoling933', smart: 282, followers: 103867 },
+            { handle: 'yq_acc', smart: 1303, followers: 90040 },
+            { handle: 'softlipa1018', smart: 388, followers: 29633 },
+            { handle: 'blackbeardXBT', smart: 905, followers: 131008 },
+            { handle: 'Maxi_cho', smart: 220, followers: 10531 },
+            { handle: 'Xuegaogx', smart: 156, followers: 32961 },
+            { handle: 'zohanlin', smart: 599, followers: 12008 },
+            { handle: 'Wonnie_mbm_', smart: 558, followers: 31587 },
+            { handle: 'maid_crypto', smart: 575, followers: 138733 }
+        ];
+
         let filteredUsers1 = [...users1];
         let filteredUsers2 = [...users2];
         let filteredUsers3 = [...users3];
         let filteredUsers4 = [...users4];
         let filteredUsers5 = [...users5];
+        let filteredUsers6 = [...users6];
 
         function renderUsers(tabNum, usersToRender) {
             const container = document.getElementById(`listContainer${tabNum}`);
@@ -1266,21 +1394,28 @@
                 return;
             }
 
-            container.innerHTML = usersToRender.map((user, index) => `
-                <div class="user-item">
-                    <div class="number ${user.gold ? 'gold' : ''}">
-                        ${index + 1}
+            container.innerHTML = usersToRender.map((user, index) => {
+                const statsHtml = (user.smart !== undefined && user.followers !== undefined) 
+                    ? `<div class="user-stats">💎 Smart: ${user.smart.toLocaleString()} | 👥 Followers: ${user.followers.toLocaleString()}</div>`
+                    : '';
+                
+                return `
+                    <div class="user-item">
+                        <div class="number ${user.gold ? 'gold' : ''}">
+                            ${index + 1}
+                        </div>
+                        <div class="user-info">
+                            <div class="user-handle">@${user.handle}</div>
+                            <a href="https://x.com/${user.handle}" target="_blank" class="user-link">x.com/${user.handle}</a>
+                            ${statsHtml}
+                        </div>
+                        <div class="action-buttons">
+                            <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit ${user.gold ? 'gold' : ''}">Buka</a>
+                            <button class="btn btn-copy" onclick="copyToClipboard('@${user.handle}')">Salin</button>
+                        </div>
                     </div>
-                    <div class="user-info">
-                        <div class="user-handle">@${user.handle}</div>
-                        <a href="https://x.com/${user.handle}" target="_blank" class="user-link">x.com/${user.handle}</a>
-                    </div>
-                    <div class="action-buttons">
-                        <a href="https://x.com/${user.handle}" target="_blank" class="btn btn-visit ${user.gold ? 'gold' : ''}">Buka</a>
-                        <button class="btn btn-copy" onclick="copyToClipboard('@${user.handle}')">Salin</button>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             updateCount(tabNum);
         }
@@ -1292,6 +1427,7 @@
             else if (tabNum === 3) users = filteredUsers3;
             else if (tabNum === 4) users = filteredUsers4;
             else if (tabNum === 5) users = filteredUsers5;
+            else if (tabNum === 6) users = filteredUsers6;
             
             document.getElementById('totalCount').textContent = users.length;
         }
@@ -1305,6 +1441,7 @@
             else if (tabNum === 3) users = users3;
             else if (tabNum === 4) users = users4;
             else if (tabNum === 5) users = users5;
+            else if (tabNum === 6) users = users6;
             
             filtered = users.filter(user => 
                 user.handle.toLowerCase().includes(lowerQuery)
@@ -1315,6 +1452,7 @@
             else if (tabNum === 3) filteredUsers3 = filtered;
             else if (tabNum === 4) filteredUsers4 = filtered;
             else if (tabNum === 5) filteredUsers5 = filtered;
+            else if (tabNum === 6) filteredUsers6 = filtered;
             
             renderUsers(tabNum, filtered);
         }
@@ -1338,6 +1476,9 @@
             } else if (tabNum === 5) {
                 filteredUsers5 = [...users5];
                 renderUsers(5, filteredUsers5);
+            } else if (tabNum === 6) {
+                filteredUsers6 = [...users6];
+                renderUsers(6, filteredUsers6);
             }
         }
 
@@ -1355,7 +1496,7 @@
             event.target.classList.add('active');
 
             // Update count based on tab
-            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : (tabName === 'tab4' ? 4 : 5)));
+            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : (tabName === 'tab4' ? 4 : (tabName === 'tab5' ? 5 : 6))));
             updateCount(tabNum);
         }
 
@@ -1394,12 +1535,17 @@
             searchUsers(5, e.target.value);
         });
 
+        document.getElementById('searchInput6').addEventListener('keyup', (e) => {
+            searchUsers(6, e.target.value);
+        });
+
         // Initial render
         renderUsers(1, users1);
         renderUsers(2, users2);
         renderUsers(3, users3);
         renderUsers(4, users4);
         renderUsers(5, users5);
+        renderUsers(6, users6);
     </script>
 </body>
 </html>
