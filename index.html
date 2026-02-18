@@ -290,6 +290,7 @@
                 <button class="tab-btn" onclick="switchTab('tab4')">top yapper Tria</button>
                 <button class="tab-btn" onclick="switchTab('tab5')">hypercooc yapper</button>
                 <button class="tab-btn" onclick="switchTab('tab6')">polygon top yappers</button>
+                <button class="tab-btn" onclick="switchTab('tab7')">seismic friend</button>
             </div>
             <div class="total-count">
                 Total: <strong id="totalCount">0</strong>
@@ -299,103 +300,64 @@
         <!-- TAB 1: list gb celipto friend -->
         <div id="tab1" class="tab-content active">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput1" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput1" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(1)">Reset</button>
             </div>
-
-            <div class="list-container" id="listContainer1">
-                <!-- User items akan di-generate di sini -->
-            </div>
+            <div class="list-container" id="listContainer1"></div>
         </div>
 
         <!-- TAB 2: top100 kaito CT -->
         <div id="tab2" class="tab-content">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput2" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput2" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(2)">Reset</button>
             </div>
-
-            <div class="list-container" id="listContainer2">
-                <!-- User items akan di-generate di sini -->
-            </div>
+            <div class="list-container" id="listContainer2"></div>
         </div>
 
         <!-- TAB 3: top yappers foru -->
         <div id="tab3" class="tab-content">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput3" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput3" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(3)">Reset</button>
             </div>
-
-            <div class="list-container" id="listContainer3">
-                <!-- User items akan di-generate di sini -->
-            </div>
+            <div class="list-container" id="listContainer3"></div>
         </div>
 
         <!-- TAB 4: top yapper Tria -->
         <div id="tab4" class="tab-content">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput4" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput4" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(4)">Reset</button>
             </div>
-
-            <div class="list-container" id="listContainer4">
-                <!-- User items akan di-generate di sini -->
-            </div>
+            <div class="list-container" id="listContainer4"></div>
         </div>
 
         <!-- TAB 5: hypercooc yapper -->
         <div id="tab5" class="tab-content">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput5" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput5" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(5)">Reset</button>
             </div>
-
-            <div class="list-container" id="listContainer5">
-                <!-- User items akan di-generate di sini -->
-            </div>
+            <div class="list-container" id="listContainer5"></div>
         </div>
 
         <!-- TAB 6: polygon top yappers -->
         <div id="tab6" class="tab-content">
             <div class="search-box">
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    id="searchInput6" 
-                    placeholder="Cari username..."
-                >
+                <input type="text" class="search-input" id="searchInput6" placeholder="Cari username...">
                 <button class="btn-reset" onclick="resetSearch(6)">Reset</button>
             </div>
+            <div class="list-container" id="listContainer6"></div>
+        </div>
 
-            <div class="list-container" id="listContainer6">
-                <!-- User items akan di-generate di sini -->
+        <!-- TAB 7: seismic friend -->
+        <div id="tab7" class="tab-content">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput7" placeholder="Cari username...">
+                <button class="btn-reset" onclick="resetSearch(7)">Reset</button>
             </div>
+            <div class="list-container" id="listContainer7"></div>
         </div>
 
         <div class="footer">
@@ -406,7 +368,6 @@
     <div class="notification" id="notification"></div>
 
     <script>
-        // Data pengguna Tab 1
         const users1 = [
             { handle: 'standotsui' },
             { handle: 'gndrngaz17' },
@@ -581,7 +542,6 @@
             { handle: 'pukerrainbrow', gold: true }
         ];
 
-        // Data pengguna Tab 2
         const users2 = [
             { handle: 'jessepollak' },
             { handle: 'shayne_coplan' },
@@ -684,7 +644,6 @@
             { handle: 'StarPlatinum_' }
         ];
 
-        // Data pengguna Tab 3 - top yappers foru
         const users3 = [
             { handle: 'RichesInCrypto' },
             { handle: 'morhplay' },
@@ -855,7 +814,6 @@
             { handle: '0xRimas' }
         ];
 
-        // Data pengguna Tab 4 - top yapper Tria
         const users4 = [
             { handle: '0xSammy' },
             { handle: 'Jampzey' },
@@ -1071,7 +1029,6 @@
             { handle: 'thisstom1' }
         ];
 
-        // Data pengguna Tab 5 - hypercooc yapper
         const users5 = [
             { handle: '0xKren' },
             { handle: 'Peymannaderi_' },
@@ -1275,7 +1232,6 @@
             { handle: 'Takeda_defi' }
         ];
 
-        // Data pengguna Tab 6 - polygon top yappers (dengan Smart dan Followers)
         const users6 = [
             { handle: 'sandeepnailwal', smart: 4634, followers: 349246 },
             { handle: 'Smokey_', smart: 1312, followers: 42286 },
@@ -1378,12 +1334,64 @@
             { handle: 'maid_crypto', smart: 575, followers: 138733 }
         ];
 
+        // Tab 7: seismic friend
+        const users7 = [
+            { handle: 'stone_gaze08' },
+            { handle: 'kenann_szn' },
+            { handle: 'irsyadibadnurul' },
+            { handle: 'Hendihaer' },
+            { handle: 'risamamp' },
+            { handle: 'gus_priana' },
+            { handle: 'Renz_414' },
+            { handle: 'Kadriantoweee' },
+            { handle: 'frenevyy' },
+            { handle: 'goodnight1515' },
+            { handle: 'elzadhamx' },
+            { handle: 'kazam_97' },
+            { handle: 'RizzDroop23' },
+            { handle: 'aqccapital' },
+            { handle: 'ArchanistETH' },
+            { handle: '0xElv214' },
+            { handle: 'oxdfahmadd' },
+            { handle: 'mynameisgoodday' },
+            { handle: 'Mariya1762933' },
+            { handle: 'floow_xyz' },
+            { handle: 'SacomKyy' },
+            { handle: 'Thins140' },
+            { handle: 'DodyMgs54838' },
+            { handle: '0xgundulmu' },
+            { handle: 'zhevanyaptraprl' },
+            { handle: '0xChaca' },
+            { handle: 'solenjoyor' },
+            { handle: 'misterxfrtn18' },
+            { handle: 'thesarimzaidi' },
+            { handle: 'fvcmalife' },
+            { handle: 'Enny1124' },
+            { handle: 'Fernld' },
+            { handle: 'luzzyzz97' },
+            { handle: '13penguinnn' },
+            { handle: 'nomnomkiko' },
+            { handle: 'agataafck' },
+            { handle: 'syah8451' },
+            { handle: 'senanugraha445' },
+            { handle: 'ourcawhalee' },
+            { handle: 'Nurlael50945333' },
+            { handle: '0xafrizal' },
+            { handle: 'rakkunss' },
+            { handle: 'Faizan626371' },
+            { handle: 'thaitea_paw' },
+            { handle: 'cmn69179832' },
+            { handle: '0xpudge01' },
+            { handle: 'feebbbbbb' }
+        ];
+
         let filteredUsers1 = [...users1];
         let filteredUsers2 = [...users2];
         let filteredUsers3 = [...users3];
         let filteredUsers4 = [...users4];
         let filteredUsers5 = [...users5];
         let filteredUsers6 = [...users6];
+        let filteredUsers7 = [...users7];
 
         function renderUsers(tabNum, usersToRender) {
             const container = document.getElementById(`listContainer${tabNum}`);
@@ -1421,31 +1429,14 @@
         }
 
         function updateCount(tabNum) {
-            let users;
-            if (tabNum === 1) users = filteredUsers1;
-            else if (tabNum === 2) users = filteredUsers2;
-            else if (tabNum === 3) users = filteredUsers3;
-            else if (tabNum === 4) users = filteredUsers4;
-            else if (tabNum === 5) users = filteredUsers5;
-            else if (tabNum === 6) users = filteredUsers6;
-            
-            document.getElementById('totalCount').textContent = users.length;
+            const map = { 1: filteredUsers1, 2: filteredUsers2, 3: filteredUsers3, 4: filteredUsers4, 5: filteredUsers5, 6: filteredUsers6, 7: filteredUsers7 };
+            document.getElementById('totalCount').textContent = map[tabNum].length;
         }
 
         function searchUsers(tabNum, query) {
             const lowerQuery = query.toLowerCase();
-            let users, filtered;
-            
-            if (tabNum === 1) users = users1;
-            else if (tabNum === 2) users = users2;
-            else if (tabNum === 3) users = users3;
-            else if (tabNum === 4) users = users4;
-            else if (tabNum === 5) users = users5;
-            else if (tabNum === 6) users = users6;
-            
-            filtered = users.filter(user => 
-                user.handle.toLowerCase().includes(lowerQuery)
-            );
+            const allUsers = { 1: users1, 2: users2, 3: users3, 4: users4, 5: users5, 6: users6, 7: users7 };
+            const filtered = allUsers[tabNum].filter(user => user.handle.toLowerCase().includes(lowerQuery));
             
             if (tabNum === 1) filteredUsers1 = filtered;
             else if (tabNum === 2) filteredUsers2 = filtered;
@@ -1453,99 +1444,56 @@
             else if (tabNum === 4) filteredUsers4 = filtered;
             else if (tabNum === 5) filteredUsers5 = filtered;
             else if (tabNum === 6) filteredUsers6 = filtered;
+            else if (tabNum === 7) filteredUsers7 = filtered;
             
             renderUsers(tabNum, filtered);
         }
 
         function resetSearch(tabNum) {
             document.getElementById(`searchInput${tabNum}`).value = '';
-            let users;
-            
-            if (tabNum === 1) {
-                filteredUsers1 = [...users1];
-                renderUsers(1, filteredUsers1);
-            } else if (tabNum === 2) {
-                filteredUsers2 = [...users2];
-                renderUsers(2, filteredUsers2);
-            } else if (tabNum === 3) {
-                filteredUsers3 = [...users3];
-                renderUsers(3, filteredUsers3);
-            } else if (tabNum === 4) {
-                filteredUsers4 = [...users4];
-                renderUsers(4, filteredUsers4);
-            } else if (tabNum === 5) {
-                filteredUsers5 = [...users5];
-                renderUsers(5, filteredUsers5);
-            } else if (tabNum === 6) {
-                filteredUsers6 = [...users6];
-                renderUsers(6, filteredUsers6);
-            }
+            const allUsers = { 1: users1, 2: users2, 3: users3, 4: users4, 5: users5, 6: users6, 7: users7 };
+            const reset = [...allUsers[tabNum]];
+            if (tabNum === 1) filteredUsers1 = reset;
+            else if (tabNum === 2) filteredUsers2 = reset;
+            else if (tabNum === 3) filteredUsers3 = reset;
+            else if (tabNum === 4) filteredUsers4 = reset;
+            else if (tabNum === 5) filteredUsers5 = reset;
+            else if (tabNum === 6) filteredUsers6 = reset;
+            else if (tabNum === 7) filteredUsers7 = reset;
+            renderUsers(tabNum, reset);
         }
 
         function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected tab
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
-
-            // Update count based on tab
-            const tabNum = tabName === 'tab1' ? 1 : (tabName === 'tab2' ? 2 : (tabName === 'tab3' ? 3 : (tabName === 'tab4' ? 4 : (tabName === 'tab5' ? 5 : 6))));
+            const tabNum = parseInt(tabName.replace('tab', ''));
             updateCount(tabNum);
         }
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('✓ Disalin!');
-            });
+            navigator.clipboard.writeText(text).then(() => showNotification('✓ Disalin!'));
         }
 
         function showNotification(message) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 1500);
+            setTimeout(() => notification.classList.remove('show'), 1500);
         }
 
-        document.getElementById('searchInput1').addEventListener('keyup', (e) => {
-            searchUsers(1, e.target.value);
-        });
-
-        document.getElementById('searchInput2').addEventListener('keyup', (e) => {
-            searchUsers(2, e.target.value);
-        });
-
-        document.getElementById('searchInput3').addEventListener('keyup', (e) => {
-            searchUsers(3, e.target.value);
-        });
-
-        document.getElementById('searchInput4').addEventListener('keyup', (e) => {
-            searchUsers(4, e.target.value);
-        });
-
-        document.getElementById('searchInput5').addEventListener('keyup', (e) => {
-            searchUsers(5, e.target.value);
-        });
-
-        document.getElementById('searchInput6').addEventListener('keyup', (e) => {
-            searchUsers(6, e.target.value);
-        });
+        for (let i = 1; i <= 7; i++) {
+            document.getElementById(`searchInput${i}`).addEventListener('keyup', (e) => {
+                searchUsers(i, e.target.value);
+            });
+        }
 
         // Initial render
-        renderUsers(1, users1);
-        renderUsers(2, users2);
-        renderUsers(3, users3);
-        renderUsers(4, users4);
-        renderUsers(5, users5);
-        renderUsers(6, users6);
+        for (let i = 1; i <= 7; i++) {
+            const allUsers = { 1: users1, 2: users2, 3: users3, 4: users4, 5: users5, 6: users6, 7: users7 };
+            renderUsers(i, allUsers[i]);
+        }
     </script>
 </body>
 </html>
